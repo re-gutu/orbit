@@ -1,0 +1,553 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Orbit Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: local("Plus Jakarta Sans"), local("PlusJakartaSans-Regular"), local("Arial"), local("Helvetica");
+}
+
+@font-face {
+  font-family: "Orbit Display";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: local("Instrument Serif"), local("InstrumentSerif-Regular"), local("Times New Roman"), local("Times"), local("serif");
+}
+
+:root {
+  --ink: #ffffff;
+  --surface: #161616;
+  --orb-reveal: cubic-bezier(.16, 1, .3, 1);
+  --orb-soft: cubic-bezier(.25, .8, .28, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.viewport {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  contain: strict;
+  isolation: isolate;
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+/* 1. Brand Mark */
+.brand-mark {
+  position: absolute;
+  top: 2.141745dvh;
+  left: 3.854167vw;
+  width: clamp(34px, min(3.4375vw, 5.2dvh), 66px);
+  height: auto;
+  color: #ffffff;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* 2. Primary Nav */
+.primary-nav {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.primary-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav li {
+  position: absolute;
+  top: 3.426791dvh;
+  pointer-events: none;
+}
+
+.nav-link {
+  display: inline-block;
+  font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  font-size: clamp(13px, min(1.302083vw, 2.05dvh), 25px);
+  color: #ffffff;
+  text-decoration: none;
+  pointer-events: auto;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0.95;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.primary-nav li:nth-child(1) .nav-link {
+  transform: scaleX(1.165);
+  transform-origin: left center;
+}
+
+.primary-nav li:nth-child(2) .nav-link {
+  transform: scaleX(1.052);
+  transform-origin: left center;
+}
+
+.primary-nav li:nth-child(3) .nav-link {
+  transform: scaleX(1.126);
+  transform-origin: left center;
+}
+
+.primary-nav li:nth-child(4) .nav-link {
+  transform: scaleX(1.168);
+  transform-origin: left center;
+}
+
+/* 3. Secure System Pill */
+.secure-pill {
+  position: absolute;
+  top: 2.336449dvh;
+  right: 7.5vw;
+  height: clamp(34px, 4.439252dvh, 57px);
+  border-radius: 999px;
+  background-color: #ffffff;
+  color: #161616;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(20px, 2.2vw, 36px);
+  font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  font-size: clamp(13px, min(1.25vw, 1.9dvh), 21px);
+  letter-spacing: 0.026923em;
+  text-decoration: none;
+  font-weight: 500;
+  z-index: 4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.secure-pill:hover {
+  opacity: 0.94;
+}
+
+/* 4. Wordmark ORBIT */
+.orbit-word {
+  position: absolute;
+  top: 11.565421dvh;
+  left: 4.348958vw;
+  margin: 0;
+  padding: 0;
+  font-family: "Orbit Display", "Instrument Serif", "Times New Roman", Times, serif;
+  font-size: min(27.8125vw, 55dvh);
+  line-height: 0.88;
+  letter-spacing: 0.033708em;
+  font-weight: 400;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.orbit-word__mask {
+  display: inline-block;
+}
+
+.orbit-word__inner {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.orbit-word__white {
+  color: #ffffff;
+}
+
+.orbit-word__o {
+  display: inline-block;
+  transform: scaleX(1.0866);
+  transform-origin: center;
+  margin-right: 0.042135em;
+}
+
+.orbit-word__pink {
+  display: inline-block;
+  background: linear-gradient(180deg, #ffc5dc 0%, #fd86db 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 5. Flower Stack & Canvas */
+.flower {
+  position: absolute;
+  top: 14.749065dvh;
+  left: 49.121328vw;
+  height: 106.109034dvh;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.flower__sizer {
+  height: 100%;
+  width: auto;
+  visibility: hidden;
+  pointer-events: none;
+  display: block;
+}
+
+.flower__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 6. Corner Copy */
+.support-copy {
+  position: absolute;
+  bottom: 4.361371dvh;
+  z-index: 3;
+  color: #f7f7f7;
+  font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, min(1.40625vw, 2.102804dvh), 27px);
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.support-copy--left {
+  left: 3.177083vw;
+  transform: scaleX(1.073);
+  transform-origin: left bottom;
+}
+
+.support-copy--right {
+  left: 78.28125vw;
+  transform: scaleX(1.058);
+  transform-origin: left bottom;
+}
+
+.support-copy__inner {
+  display: block;
+}
+
+/* 7. Mobile Chrome (Hidden on Desktop) */
+.mobile-burger {
+  display: none;
+}
+
+.scrim {
+  display: none;
+}
+
+.mobile-sheet {
+  display: none;
+}
+
+/* Entrance Animation Keyframes */
+@keyframes orb-word {
+  0% {
+    transform: translateY(118%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes orb-subject {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(3.4dvh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes orb-corner {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orb-quiet {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orb-dim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Choreographed entrance while html has class anim */
+html.anim .brand-mark {
+  animation: orb-quiet 620ms var(--orb-soft) 100ms both;
+}
+
+html.anim .primary-nav li:nth-child(1) {
+  animation: orb-dim 550ms var(--orb-soft) 180ms both;
+}
+html.anim .primary-nav li:nth-child(2) {
+  animation: orb-dim 550ms var(--orb-soft) 225ms both;
+}
+html.anim .primary-nav li:nth-child(3) {
+  animation: orb-dim 550ms var(--orb-soft) 270ms both;
+}
+html.anim .primary-nav li:nth-child(4) {
+  animation: orb-dim 550ms var(--orb-soft) 315ms both;
+}
+
+html.anim .secure-pill {
+  animation: orb-quiet 620ms var(--orb-soft) 340ms both;
+}
+
+html.anim .orbit-word__mask {
+  overflow: hidden;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+html.anim .orbit-word__inner {
+  animation: orb-word 1150ms var(--orb-reveal) 300ms both;
+}
+
+html.anim .flower {
+  animation: orb-subject 1150ms var(--orb-reveal) 660ms both;
+}
+
+html.anim .support-copy__inner {
+  animation: orb-corner 720ms var(--orb-soft) 980ms both;
+}
+
+/* Responsive Queries */
+@media (max-width: 900px), (max-aspect-ratio: 4 / 5) {
+  .primary-nav {
+    display: none;
+  }
+
+  .secure-pill {
+    display: none;
+  }
+
+  .mobile-burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2.141745dvh;
+    right: 5vw;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    z-index: 12;
+    padding: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  html.anim .mobile-burger {
+    animation: orb-quiet 620ms var(--orb-soft) 240ms both;
+  }
+
+  .burger-icon {
+    width: 18px;
+    height: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .burger-bar {
+    width: 100%;
+    height: 2px;
+    background-color: #161616;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  .mobile-burger[aria-expanded="true"] .burger-bar:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .mobile-burger[aria-expanded="true"] .burger-bar:nth-child(2) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .scrim.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(85vw, 360px);
+    background: rgba(22, 22, 22, 0.94);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 10;
+    padding: 5.5rem 2rem 2.5rem;
+    box-sizing: border-box;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-sheet.is-open {
+    transform: translateX(0);
+  }
+
+  .mobile-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mobile-nav__link {
+    font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+  }
+
+  .mobile-secure-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #161616;
+    font-family: "Orbit Sans", "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.026923em;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+@media (max-aspect-ratio: 4 / 5) {
+  .flower {
+    top: 22dvh;
+    left: 50%;
+    height: min(55dvh, 110vw);
+    transform: translateX(-50%);
+  }
+
+  .orbit-word {
+    top: 12dvh;
+    font-size: min(27.5vw, 18dvh);
+  }
+
+  .support-copy {
+    font-size: clamp(13px, 3.2vw, 18px);
+    bottom: 3.5dvh;
+  }
+
+  .support-copy--left {
+    left: 5vw;
+  }
+
+  .support-copy--right {
+    left: auto;
+    right: 5vw;
+    text-align: right;
+    transform-origin: right bottom;
+  }
+}
+
+@media (max-width: 1200px), (orientation: portrait) {
+  .orbit-word {
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.anim .stage {
+    animation: orb-dim 280ms var(--orb-soft) both;
+  }
+  html.anim * {
+    animation: none !important;
+  }
+}
